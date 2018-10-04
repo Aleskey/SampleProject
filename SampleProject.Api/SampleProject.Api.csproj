@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>d50a92cd-1f55-4db6-a64b-20de7a0efcb8</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,6 +23,12 @@
     <ProjectReference Include="..\SampleProject.Core\SampleProject.Core.csproj" />
     <ProjectReference Include="..\SampleProject.DataAccess\SampleProject.DataAccess.csproj" />
     <ProjectReference Include="..\SampleProject.Models\SampleProject.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="SampleProject.Api.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
