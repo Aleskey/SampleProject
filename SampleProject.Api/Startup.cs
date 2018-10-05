@@ -84,7 +84,6 @@ namespace SampleProject.Api
             RateDbContext rateDbContext)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
 
             if (CurrentEnvironment.IsDevelopment())
             {
