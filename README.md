@@ -1,5 +1,5 @@
 # SampleProject
 
-Create project with using ASP.NET Web API Core 2 that can retrieve Price based on passed date range
+Web API allows to enter date range and get price for if it meets to a requirements.
 
-To access documentation you will need to Start the App and replace api/rates in Url on to swagger in Browser.
+As a documentation used Swagger based on xml generated document, to view documentation you will need to start App and replace api/rates in url onto swagger or put /swagger just right after host if App is deployed in any Cloud system.
