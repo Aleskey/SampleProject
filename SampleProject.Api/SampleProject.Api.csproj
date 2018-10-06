@@ -29,6 +29,9 @@
     <None Update="SampleProject.Api.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+	<None Update="app.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

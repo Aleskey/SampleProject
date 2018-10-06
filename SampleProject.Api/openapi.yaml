@@ -1,0 +1,57 @@
+swagger: '2.0'
+info:
+  version: v1
+  title: SampleProject API
+  description: A simple example ASP.NET Core Web API
+  termsOfService: None
+  contact:
+    name: Alexey Karpov
+    email: aleksey.karpov1982@gmail.com
+host: sample-project-201810061112.appspot.com
+paths:
+  '/api/rates/{fromDate}/{toDate}':
+    get:
+      tags:
+        - Rates
+      summary: Gets the specified from date.
+      description: "Sample request:\r\n            \r\n    GET /2017-03-15T09:10:13.8105498-04:00/2017-03-15T10:10:13.8105498-04:00"
+      operationId: ApiRatesByFromDateByToDateGet
+      consumes: []
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: fromDate
+          in: path
+          description: From date.
+          required: true
+          type: string
+          format: date-time
+        - name: toDate
+          in: path
+          description: To date.
+          required: true
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Returns the founded rate including date range
+          schema:
+            $ref: '#/definitions/RateModel'
+        '400':
+          description: If passed incorrect parameters
+        '404':
+          description: When rate unavailable for given period
+definitions:
+  RateModel:
+    type: object
+    properties:
+      price:
+        format: double
+        type: number
+      fromDate:
+        format: date-time
+        type: string
+      toDate:
+        format: date-time
+        type: string
