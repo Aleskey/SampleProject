@@ -1,30 +1,27 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.EntityFrameworkCore.Internal;
+using SampleProject.Core.Factories;
 using SampleProject.DataAccess;
-using SampleProject.DataAccess.Helpers;
+using SampleProject.DataAccess.Extensions;
 
 namespace SampleProject.Api.Extensions
 {
     public static class RateDbContextExtensions
     {
-        public static void EnsureSeedDataForContext(this RateDbContext context)
+        public static void EnsureSeedDataForContext(this RateDbContext context, DataProviderFactory dataProviderFactory)
         {
             if (EnumerableExtensions.Any(context.Rates))
             {
                 return;
             }
 
-            var rates = RateHelpers.GetRatesForDayOfWeeks(
-                    Enumerable.Range((int)DayOfWeek.Monday, (int)DayOfWeek.Friday).Cast<DayOfWeek>(),
-                    new TimeSpan(6, 0, 0),
-                    new TimeSpan(18, 0, 0),
-                    1500)
-                .Concat(RateHelpers.GetRatesForDayOfWeeks(
-                    new[] { DayOfWeek.Saturday, DayOfWeek.Sunday },
-                    new TimeSpan(6, 0, 0),
-                    new TimeSpan(20, 0, 0),
-                    2000)).ToList();
+            var provider = dataProviderFactory.GetProvider();
+            var rates = provider.GetRateCollection().GetRateEntities().ToList();
+
+            if (!rates.Any())
+            {
+                return;
+            }
 
             context.Rates.AddRange(rates);
             context.SaveChanges();

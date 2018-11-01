@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.DataAccess

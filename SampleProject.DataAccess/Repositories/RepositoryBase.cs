@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using SampleProject.Common;
 
 namespace SampleProject.DataAccess.Repositories
@@ -17,22 +14,5 @@ namespace SampleProject.DataAccess.Repositories
         }
 
         public IQueryable<T> All => RateDbContext.Set<T>();
-
-        public async Task<IEnumerable<T>> InsertRangeAsync(IEnumerable<T> entities)
-        {
-            if (entities == null)
-            {
-                throw new ArgumentNullException(nameof(entities));
-            }
-
-            await RateDbContext.Set<T>().AddRangeAsync(entities);
-
-            return entities;
-        }
-
-        public async Task<int> SaveChangesAsync()
-        {
-            return await RateDbContext.SaveChangesAsync();
-        }
     }
 }

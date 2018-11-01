@@ -31,7 +31,7 @@
              <remarks>
              Sample request:
             
-                 GET /2017-03-15T09:10:13.8105498-04:00/2017-03-15T10:10:13.8105498-04:00
+                 GET /2017-03-15T09:10:13Z/2017-03-15T10:10:13Z
              
              </remarks>
              <returns>A founded rate for specific period</returns>

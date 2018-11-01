@@ -7,25 +7,13 @@ using SampleProject.Models;
 
 namespace SampleProject.Api.Controllers
 {
-    /// <summary>
-    /// Represents rates controller
-    /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Produces("application/json", "application/xml")]
     [Route("api/rates")]
     [ApiController]
     public class RatesController : ControllerBase
     {
-        /// <summary>
-        /// The rate calculation action
-        /// </summary>
         private IRateCalculationAction rateCalculationAction;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RatesController"/> class.
-        /// </summary>
-        /// <param name="rateCalculationAction">The rate calculation action.</param>
-        /// <exception cref="ArgumentNullException">rateCalculationAction</exception>
         public RatesController(IRateCalculationAction rateCalculationAction)
         {
             this.rateCalculationAction = rateCalculationAction ?? throw new ArgumentNullException(nameof(rateCalculationAction));
@@ -39,8 +27,8 @@ namespace SampleProject.Api.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     GET /2017-03-15T09:10:13.8105498-04:00/2017-03-15T10:10:13.8105498-04:00
-        /// 
+        ///     GET /2017-03-15T09:10:13Z/2017-03-15T10:10:13Z
+        ///
         /// </remarks>
         /// <returns>A founded rate for specific period</returns>
         /// <response code="200">Returns the founded rate including date range</response>
@@ -64,7 +52,7 @@ namespace SampleProject.Api.Controllers
                 return NotFound("Unavailable");
             }
 
-            return Ok(new RateModel { Price = rate.Price, FromDate = fromDate.DateTime, ToDate = toDate.DateTime});
+            return Ok(new RateModel { Price = rate.Price });
         }
     }
 }

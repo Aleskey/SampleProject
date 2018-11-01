@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SampleProject.Models
+﻿namespace SampleProject.Models
 {
     /// <summary>
     /// Represents rate model
@@ -11,15 +9,5 @@ namespace SampleProject.Models
         /// Gets or sets the price.
         /// </summary>
         public decimal Price { get; set; }
-
-        /// <summary>
-        /// Gets or sets from date.
-        /// </summary>
-        public DateTime FromDate { get; set; }
-
-        /// <summary>
-        /// Converts to date.
-        /// </summary>
-        public DateTime ToDate { get; set; }
     }
 }

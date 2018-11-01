@@ -3,9 +3,6 @@ using System.Net.Http;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using SampleProject.DataAccess;
 
 namespace SampleProject.Api.Tests
 {
@@ -17,10 +14,7 @@ namespace SampleProject.Api.Tests
 
         public TestClientProvider()
         {
-            
-            server = new TestServer(WebHost.CreateDefaultBuilder().UseEnvironment("Testing")
-                .UseStartup<TestStartup>());
-
+            server = new TestServer(WebHost.CreateDefaultBuilder().UseEnvironment("Testing").UseStartup<TestStartup>());
             Client = server.CreateClient();
         }
 

@@ -14,7 +14,7 @@ paths:
       tags:
         - Rates
       summary: Gets the specified from date.
-      description: "Sample request:\r\n            \r\n    GET /2017-03-15T09:10:13.8105498-04:00/2017-03-15T10:10:13.8105498-04:00"
+      description: "Sample request:\r\n            \r\n    GET /2017-03-15T09:10:13Z/2017-03-15T10:10:13Z"
       operationId: ApiRatesByFromDateByToDateGet
       consumes: []
       produces:
@@ -49,9 +49,3 @@ definitions:
       price:
         format: double
         type: number
-      fromDate:
-        format: date-time
-        type: string
-      toDate:
-        format: date-time
-        type: string

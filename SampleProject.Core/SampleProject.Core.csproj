@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SampleProject.Common\SampleProject.Common.csproj" />
+    <ProjectReference Include="..\SampleProject.Data.Model\SampleProject.Data.Model.csproj" />
     <ProjectReference Include="..\SampleProject.DataAccess\SampleProject.DataAccess.csproj" />
+    <ProjectReference Include="..\SampleProject.Data\SampleProject.Data.csproj" />
   </ItemGroup>
 
 </Project>
