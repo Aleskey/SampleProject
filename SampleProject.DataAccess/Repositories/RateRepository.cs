@@ -1,10 +1,11 @@
-﻿using SampleProject.DataAccess.Entities;
+﻿using SampleProject.Common.Interfaces;
+using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.DataAccess.Repositories
 {
-    public class RateRepository : RepositoryBase<Rate>
+    public class RateRepository : GenericRepository<Rate>
     {
-        public RateRepository(RateDbContext context) : base(context)
+        public RateRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
     }

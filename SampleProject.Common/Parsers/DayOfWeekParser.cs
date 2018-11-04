@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SampleProject.Data.Parsers
+namespace SampleProject.Common.Parsers
 {
     public static class DayOfWeekParser
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
-using SampleProject.Core.Factories.DataProviders;
+using SampleProject.Common.Interfaces;
 
-namespace SampleProject.Core.Factories
+namespace SampleProject.DataAccess.DataProvider
 {
-    public class DataProviderFactory
+    public class DataProviderFactory : IDataProviderFactory
     {
         private IConfiguration configuration;
 

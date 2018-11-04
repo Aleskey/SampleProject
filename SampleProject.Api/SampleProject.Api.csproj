@@ -33,10 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SampleProject.Common\SampleProject.Common.csproj" />
     <ProjectReference Include="..\SampleProject.Core\SampleProject.Core.csproj" />
-    <ProjectReference Include="..\SampleProject.Data.Model\SampleProject.Data.Model.csproj" />
     <ProjectReference Include="..\SampleProject.DataAccess\SampleProject.DataAccess.csproj" />
-    <ProjectReference Include="..\SampleProject.Data\SampleProject.Data.csproj" />
-    <ProjectReference Include="..\SampleProject.Models\SampleProject.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

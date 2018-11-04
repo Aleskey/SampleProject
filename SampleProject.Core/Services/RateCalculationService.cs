@@ -2,17 +2,17 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SampleProject.Common;
+using SampleProject.Common.Interfaces;
 using SampleProject.Core.Interfaces;
 using SampleProject.DataAccess.Entities;
 
-namespace SampleProject.Core
+namespace SampleProject.Core.Services
 {
-    public class RateCalculationAction : IRateCalculationAction
+    public class RateCalculationService : IRateCalculationService
     {
         private IRepository<Rate> rateRepository;
 
-        public RateCalculationAction(IRepository<Rate> rateRepository)
+        public RateCalculationService(IRepository<Rate> rateRepository)
         {
             this.rateRepository = rateRepository ?? throw new ArgumentNullException(nameof(rateRepository));
         }
@@ -23,7 +23,7 @@ namespace SampleProject.Core
             var toZulu = toDateTime.ToUniversalTime();
 
             var query =
-                from rate in rateRepository.All
+                from rate in rateRepository.GetAll
                 where rate.DayOfWeek == fromZulu.DayOfWeek
                       && fromZulu.TimeOfDay >= rate.FromTime
                       && rate.ToTime >= toZulu.TimeOfDay

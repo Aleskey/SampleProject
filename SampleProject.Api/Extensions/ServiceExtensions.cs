@@ -2,13 +2,12 @@
 using System.IO;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SampleProject.Common;
-using SampleProject.Core;
-using SampleProject.Core.Factories;
+using SampleProject.Common.Interfaces;
 using SampleProject.Core.Interfaces;
+using SampleProject.Core.Services;
 using SampleProject.DataAccess;
+using SampleProject.DataAccess.DataProvider;
 using SampleProject.DataAccess.Entities;
 using SampleProject.DataAccess.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
@@ -19,11 +18,12 @@ namespace SampleProject.Api.Extensions
     {
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
-            services.AddDbContext<RateDbContext>(opt => opt.UseInMemoryDatabase("SampleDatabase"));
+            services.AddDbContext<IDbContext, RateDbContext>(opt => opt.UseInMemoryDatabase("SampleDatabase"));
 
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IRepository<Rate>, RateRepository>();
-            services.AddTransient<IRateCalculationAction, RateCalculationAction>();
-            services.AddTransient<DataProviderFactory, DataProviderFactory>();
+            services.AddTransient<IRateCalculationService, RateCalculationService>();
+            services.AddTransient<IDataProviderFactory, DataProviderFactory>();
 
             return services;
         }

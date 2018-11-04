@@ -4,7 +4,7 @@ using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.Core.Interfaces
 {
-    public interface IRateCalculationAction
+    public interface IRateCalculationService
     {
         Task<Rate> Calculate(DateTimeOffset fromDateTime, DateTimeOffset toDateTime);
     }

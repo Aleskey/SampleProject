@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
-using SampleProject.Data;
+using SampleProject.Common.Interfaces;
+using SampleProject.Common.Data;
 
-namespace SampleProject.Core.Factories.DataProviders
+namespace SampleProject.DataAccess.DataProvider
 {
     public class FileDataProvider : IDataProvider
     {

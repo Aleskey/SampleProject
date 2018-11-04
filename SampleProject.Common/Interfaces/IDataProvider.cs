@@ -1,6 +1,6 @@
-﻿using SampleProject.Data;
+﻿using SampleProject.Common.Data;
 
-namespace SampleProject.Core.Factories.DataProviders
+namespace SampleProject.Common.Interfaces
 {
     public interface IDataProvider
     {

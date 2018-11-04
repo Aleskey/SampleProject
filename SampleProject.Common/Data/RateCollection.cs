@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace SampleProject.Data
+namespace SampleProject.Common.Data
 {
     public class RateCollection
     {

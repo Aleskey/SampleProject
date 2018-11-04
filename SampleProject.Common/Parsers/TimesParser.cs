@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
-using SampleProject.Data.Model;
+using SampleProject.Common.Data;
 
-namespace SampleProject.Data.Parsers
+namespace SampleProject.Common.Parsers
 {
     public class TimesParser
     {

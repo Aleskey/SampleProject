@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleProject.Core.Interfaces;
-using SampleProject.Models;
+using SampleProject.Api.Models;
 
 namespace SampleProject.Api.Controllers
 {
@@ -12,9 +12,9 @@ namespace SampleProject.Api.Controllers
     [ApiController]
     public class RatesController : ControllerBase
     {
-        private IRateCalculationAction rateCalculationAction;
+        private IRateCalculationService rateCalculationAction;
 
-        public RatesController(IRateCalculationAction rateCalculationAction)
+        public RatesController(IRateCalculationService rateCalculationAction)
         {
             this.rateCalculationAction = rateCalculationAction ?? throw new ArgumentNullException(nameof(rateCalculationAction));
         }

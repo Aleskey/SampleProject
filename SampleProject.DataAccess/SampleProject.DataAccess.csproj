@@ -10,8 +10,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SampleProject.Common\SampleProject.Common.csproj" />
-    <ProjectReference Include="..\SampleProject.Data.Model\SampleProject.Data.Model.csproj" />
-    <ProjectReference Include="..\SampleProject.Data\SampleProject.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

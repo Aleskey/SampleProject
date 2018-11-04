@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SampleProject.Api.Extensions;
-using SampleProject.Core.Factories;
+using SampleProject.Common.Interfaces;
 using SampleProject.DataAccess;
+using SampleProject.DataAccess.DataProvider;
+using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.Api
 {
@@ -30,8 +33,9 @@ namespace SampleProject.Api
             IConfiguration configuration,
             IHostingEnvironment hostingEnvironment,
             ILoggerFactory loggerFactory,
-            RateDbContext rateDbContext,
-            DataProviderFactory dataProviderFactory)
+            IDataProviderFactory dataProviderFactory,
+            IUnitOfWork unitOfWork,
+            IRepository<Rate> rateRepository)
         {
             loggerFactory.AddConsole(configuration.GetSection("Logging"));
 
@@ -40,7 +44,7 @@ namespace SampleProject.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            rateDbContext.EnsureSeedDataForContext(dataProviderFactory);
+            rateRepository.EnsureSeedData(dataProviderFactory, unitOfWork);
 
             app.ConfigureSwagger();
             app.UseStatusCodePages();
