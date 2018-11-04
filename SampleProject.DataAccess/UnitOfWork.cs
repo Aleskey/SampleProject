@@ -31,14 +31,14 @@ namespace SampleProject.DataAccess
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposning)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposed)
             {
                 return;
             }
 
-            if (disposning)
+            if (disposing)
             {
                 Context.Dispose();
             }
