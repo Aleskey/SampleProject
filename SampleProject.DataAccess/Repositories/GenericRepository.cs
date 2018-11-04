@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SampleProject.Common.Interfaces;
+using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.DataAccess.Repositories
 {
-    public abstract class GenericRepository<T> : IRepository<T>
-        where T : class 
+    public class GenericRepository<T> : IRepository<T>
+        where T : Entity
     {
-        private DbSet<T> dbSet { get; set; }
+        private readonly DbSet<T> dbSet;
 
         public GenericRepository(IUnitOfWork unitOfWork)
         {

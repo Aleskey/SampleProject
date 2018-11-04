@@ -8,7 +8,6 @@ using SampleProject.Core.Interfaces;
 using SampleProject.Core.Services;
 using SampleProject.DataAccess;
 using SampleProject.DataAccess.DataProvider;
-using SampleProject.DataAccess.Entities;
 using SampleProject.DataAccess.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -20,8 +19,8 @@ namespace SampleProject.Api.Extensions
         {
             services.AddDbContext<IDbContext, RateDbContext>(opt => opt.UseInMemoryDatabase("SampleDatabase"));
 
+            services.AddTransient<IRepositoryFactory, RepositoryFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IRepository<Rate>, RateRepository>();
             services.AddTransient<IRateCalculationService, RateCalculationService>();
             services.AddTransient<IDataProviderFactory, DataProviderFactory>();
 

@@ -8,12 +8,20 @@ namespace SampleProject.DataAccess
     {
         private bool disposed;
 
-        public UnitOfWork(IDbContext context)
+        private IRepositoryFactory repositoryFactory;
+
+        public UnitOfWork(IDbContext context, IRepositoryFactory repositoryFactory)
         {
             Context = context ?? throw new ArgumentNullException(nameof(context));
+            this.repositoryFactory = repositoryFactory ?? throw new ArgumentNullException(nameof(repositoryFactory));
         }
 
         public IDbContext Context { get; }
+
+        public IRepository<T> GetRepository<T>() where T : class
+        {
+            return repositoryFactory.Create<T>(this);
+        }
 
         public async Task<int> SaveChangesAsync()
         {

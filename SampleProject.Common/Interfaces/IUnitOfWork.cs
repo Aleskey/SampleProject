@@ -6,6 +6,8 @@ namespace SampleProject.Common.Interfaces
     {
         IDbContext Context { get; }
 
+        IRepository<T> GetRepository<T>() where T : class;
+
         Task<int> SaveChangesAsync();
 
         void SaveChanges();

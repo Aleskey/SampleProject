@@ -1,12 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace SampleProject.DataAccess.Entities
 {
-    public class Rate
+    public class Rate : Entity
     {
-        [Key]
-        public int Id { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public TimeSpan FromTime { get; set; }
         public TimeSpan ToTime { get; set; }

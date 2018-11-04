@@ -10,17 +10,19 @@ namespace SampleProject.Core.Services
 {
     public class RateCalculationService : IRateCalculationService
     {
-        private IRepository<Rate> rateRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public RateCalculationService(IRepository<Rate> rateRepository)
+        public RateCalculationService(IUnitOfWork unitOfWork)
         {
-            this.rateRepository = rateRepository ?? throw new ArgumentNullException(nameof(rateRepository));
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public async Task<Rate> Calculate(DateTimeOffset fromDateTime, DateTimeOffset toDateTime)
         {
             var fromZulu = fromDateTime.ToUniversalTime();
             var toZulu = toDateTime.ToUniversalTime();
+
+            var rateRepository = unitOfWork.GetRepository<Rate>();
 
             var query =
                 from rate in rateRepository.GetAll

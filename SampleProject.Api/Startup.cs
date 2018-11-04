@@ -7,8 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SampleProject.Api.Extensions;
 using SampleProject.Common.Interfaces;
-using SampleProject.DataAccess;
-using SampleProject.DataAccess.DataProvider;
 using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.Api
@@ -34,8 +32,7 @@ namespace SampleProject.Api
             IHostingEnvironment hostingEnvironment,
             ILoggerFactory loggerFactory,
             IDataProviderFactory dataProviderFactory,
-            IUnitOfWork unitOfWork,
-            IRepository<Rate> rateRepository)
+            IUnitOfWork unitOfWork)
         {
             loggerFactory.AddConsole(configuration.GetSection("Logging"));
 
@@ -44,7 +41,7 @@ namespace SampleProject.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            rateRepository.EnsureSeedData(dataProviderFactory, unitOfWork);
+            unitOfWork.EnsureSeedData(dataProviderFactory);
 
             app.ConfigureSwagger();
             app.UseStatusCodePages();

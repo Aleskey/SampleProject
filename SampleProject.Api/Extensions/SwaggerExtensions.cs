@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Rewrite;
 
 namespace SampleProject.Api.Extensions
 {
-    public static class ApplicationBuilderExtensions
+    public static class SwaggerExtensions
     {
         public static IApplicationBuilder ConfigureSwagger(this IApplicationBuilder applicationBuilder)
         {
