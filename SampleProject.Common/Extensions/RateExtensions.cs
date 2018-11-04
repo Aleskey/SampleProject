@@ -30,11 +30,10 @@ namespace SampleProject.Common.Extensions
             var items = (rate.Days ?? string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries);
 
             var result = new List<DayOfWeek>();
-            DayOfWeek dayOfWeek;
 
             foreach (var item in items)
             {
-                if (!DayOfWeekMapping.TryGetValue(item.Trim().ToLowerInvariant(), out dayOfWeek))
+                if (!DayOfWeekMapping.TryGetValue(item.Trim().ToLowerInvariant(), out DayOfWeek dayOfWeek))
                 {
                     throw new Exception("Invalid input, please ensure that you have set correct day of weeks e.g. mon,tues,wed");
                 }

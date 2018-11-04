@@ -67,7 +67,7 @@ namespace SampleProject.Api.Tests.Integrations
             AssertEqual(response, "\"Unavailable\"");
         }
 
-        private void AssertEqual(HttpResponseMessage message, string expected)
+        private static void AssertEqual(HttpResponseMessage message, string expected)
         {
             Assert.NotNull(message);
             Assert.NotNull(expected);

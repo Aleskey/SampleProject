@@ -8,7 +8,7 @@ namespace SampleProject.DataAccess.DataProvider
 {
     public class FileDataProvider : IDataProvider
     {
-        private string filePath;
+        private readonly string filePath;
 
         public FileDataProvider(string filePath)
         {

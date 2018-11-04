@@ -6,7 +6,7 @@ namespace SampleProject.DataAccess.DataProvider
 {
     public class DataProviderFactory : IDataProviderFactory
     {
-        private IConfiguration configuration;
+        private readonly IConfiguration configuration;
 
         private const string ConfigurationFilePathKey = "DataFile";
 

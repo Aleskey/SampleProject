@@ -10,7 +10,7 @@ namespace SampleProject.Api.Tests
     {
         private TestServer server;
 
-        public HttpClient Client { get; }
+        public HttpClient Client { get; private set; }
 
         public TestClientProvider()
         {
@@ -20,8 +20,26 @@ namespace SampleProject.Api.Tests
 
         public void Dispose()
         {
-            server?.Dispose();
-            Client?.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+            
+        }
+
+        ~TestClientProvider()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                server?.Dispose();
+                server = null;
+
+                Client?.Dispose();
+                Client = null;
+            }
         }
     }
 }
