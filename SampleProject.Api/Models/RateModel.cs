@@ -6,7 +6,7 @@
     public class RateModel
     {
         /// <summary>
-        /// Gets or sets the price.
+        /// The price for given range
         /// </summary>
         public decimal Price { get; set; }
     }

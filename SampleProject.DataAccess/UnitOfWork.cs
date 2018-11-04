@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using SampleProject.Common.Interfaces;
+using SampleProject.DataAccess.Repositories;
 
 namespace SampleProject.DataAccess
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
-        private bool disposed;
-
-        private IRepositoryFactory repositoryFactory;
+        private readonly IRepositoryFactory repositoryFactory;
 
         public UnitOfWork(IDbContext context, IRepositoryFactory repositoryFactory)
         {
@@ -31,32 +30,6 @@ namespace SampleProject.DataAccess
         public void SaveChanges()
         {
             Context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                Context.Dispose();
-            }
-
-            disposed = true;
-        }
-
-        ~UnitOfWork()
-        {
-            Dispose(false);
         }
     }
 }

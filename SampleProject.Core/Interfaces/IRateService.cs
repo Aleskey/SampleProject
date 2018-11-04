@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SampleProject.Core.Models;
 using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.Core.Interfaces
 {
-    public interface IRateCalculationService
+    public interface IRateService
     {
-        Task<Rate> Calculate(DateTimeOffset fromDateTime, DateTimeOffset toDateTime);
+        Task<Rate> FindRateAsync(RateRequest rateRequest);
     }
 }

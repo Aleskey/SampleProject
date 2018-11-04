@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleProject.Core.Interfaces;
 using SampleProject.Api.Models;
+using SampleProject.Core.Models;
 
 namespace SampleProject.Api.Controllers
 {
@@ -12,11 +13,11 @@ namespace SampleProject.Api.Controllers
     [ApiController]
     public class RatesController : ControllerBase
     {
-        private IRateCalculationService rateCalculationAction;
+        private IRateService rateService;
 
-        public RatesController(IRateCalculationService rateCalculationAction)
+        public RatesController(IRateService rateService)
         {
-            this.rateCalculationAction = rateCalculationAction ?? throw new ArgumentNullException(nameof(rateCalculationAction));
+            this.rateService = rateService ?? throw new ArgumentNullException(nameof(rateService));
         }
 
         /// <summary>
@@ -30,8 +31,8 @@ namespace SampleProject.Api.Controllers
         ///     GET /2017-03-15T09:10:13Z/2017-03-15T10:10:13Z
         ///
         /// </remarks>
-        /// <returns>A founded rate for specific period</returns>
-        /// <response code="200">Returns the founded rate including date range</response>
+        /// <returns>A found rate for specific period</returns>
+        /// <response code="200">Returns the found rate including date range</response>
         /// <response code="400">If passed incorrect parameters</response>
         /// <response code="404">When rate unavailable for given period</response>
         [HttpGet("{fromDate}/{toDate}")]
@@ -40,12 +41,14 @@ namespace SampleProject.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(DateTimeOffset fromDate, DateTimeOffset toDate)
         {
-            if ((toDate - fromDate).TotalDays >= 1 || fromDate.Day != toDate.Day || fromDate == toDate)
+            var request = new RateRequest(fromDate, toDate);
+
+            if (!request.IsValid)
             {
                 return BadRequest("Passed parameters are not satisfy the requirements.");
             }
 
-            var rate = await rateCalculationAction.Calculate(fromDate, toDate);
+            var rate = await rateService.FindRateAsync(request);
 
             if (rate == null)
             {

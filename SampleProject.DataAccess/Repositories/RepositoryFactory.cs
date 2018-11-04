@@ -1,4 +1,5 @@
 ﻿using System;
+using Remotion.Linq.Parsing.Structure.IntermediateModel;
 using SampleProject.Common.Interfaces;
 
 namespace SampleProject.DataAccess.Repositories

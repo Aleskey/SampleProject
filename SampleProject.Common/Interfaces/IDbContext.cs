@@ -1,15 +1,20 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace SampleProject.Common.Interfaces
 {
     public interface IDbContext
     {
-        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class;
+
+        void AddRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class;
+
+        Task AddRangeAsync<TEntity>(IEnumerable<TEntity> entities) where TEntity : class;
+
         int SaveChanges();
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
-        void Dispose();
     }
 }

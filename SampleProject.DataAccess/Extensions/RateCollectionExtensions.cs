@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SampleProject.Common.Data;
-using SampleProject.Common.Extensions;
 
 namespace SampleProject.DataAccess.Extensions
 {
@@ -10,7 +9,7 @@ namespace SampleProject.DataAccess.Extensions
         public static IEnumerable<Entities.Rate> GetRateEntities(this RateCollection collection)
         {
             var rates =
-                (from rate in collection.Rates
+                (from rate in collection.Rates ?? Enumerable.Empty<Rate>()
                 let timesRange = rate.ParseTimes()
                 from dw in rate.ParseDays()
                 select new Entities.Rate

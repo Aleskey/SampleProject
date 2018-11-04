@@ -7,9 +7,7 @@ namespace SampleProject.Api.Extensions
 {
     public static class DatabaseExtensions
     {
-        public static void EnsureSeedData(
-            this IUnitOfWork unitOfWork,
-            IDataProviderFactory dataProviderFactory)
+        public static void EnsureSeedData(this IUnitOfWork unitOfWork, IDataProviderFactory dataProviderFactory)
         {
             var rateRepository = unitOfWork.GetRepository<Rate>();
 
@@ -18,16 +16,18 @@ namespace SampleProject.Api.Extensions
                 return;
             }
 
+            PopulateData(unitOfWork, dataProviderFactory);
+            unitOfWork.SaveChanges();
+        }
+
+        private static void PopulateData(IUnitOfWork unitOfWork, IDataProviderFactory dataProviderFactory)
+        {
+            var rateRepository = unitOfWork.GetRepository<Rate>();
+
             var provider = dataProviderFactory.GetProvider();
             var rates = provider.GetRateCollection().GetRateEntities().ToList();
 
-            if (!rates.Any())
-            {
-                return;
-            }
-
             rateRepository.AddRange(rates);
-            unitOfWork.SaveChanges();
         }
     }
 }

@@ -4,23 +4,24 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SampleProject.Common.Interfaces;
 using SampleProject.Core.Interfaces;
+using SampleProject.Core.Models;
 using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.Core.Services
 {
-    public class RateCalculationService : IRateCalculationService
+    public class RateService : IRateService
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public RateCalculationService(IUnitOfWork unitOfWork)
+        public RateService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public async Task<Rate> Calculate(DateTimeOffset fromDateTime, DateTimeOffset toDateTime)
+        public async Task<Rate> FindRateAsync(RateRequest rateRequest)
         {
-            var fromZulu = fromDateTime.ToUniversalTime();
-            var toZulu = toDateTime.ToUniversalTime();
+            var fromZulu = rateRequest.FromDate.ToUniversalTime();
+            var toZulu = rateRequest.ToDate.ToUniversalTime();
 
             var rateRepository = unitOfWork.GetRepository<Rate>();
 

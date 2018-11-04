@@ -8,10 +8,6 @@ namespace SampleProject.Common.Interfaces
     {
         IQueryable<T> GetAll { get; }
 
-        Task<ICollection<T>> GetAllAsync();
-
         void AddRange(IEnumerable<T> entities);
-
-        void AddRangeAsync(IEnumerable<T> entities);
     }
 }

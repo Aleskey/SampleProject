@@ -11,33 +11,23 @@ namespace SampleProject.DataAccess.Repositories
     public class GenericRepository<T> : IRepository<T>
         where T : Entity
     {
-        private readonly DbSet<T> dbSet;
+        private readonly IUnitOfWork unitOfWork;
 
         public GenericRepository(IUnitOfWork unitOfWork)
         {
-            if (unitOfWork == null)
-            {
-                throw new ArgumentNullException(nameof(unitOfWork));
-            }
-
-            this.dbSet = unitOfWork.Context.Set<T>();
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public IQueryable<T> GetAll => dbSet.AsQueryable();
-
-        public async Task<ICollection<T>> GetAllAsync()
-        {
-            return await dbSet.ToListAsync();
-        }
+        public IQueryable<T> GetAll => this.unitOfWork.Context.GetQueryable<T>();
 
         public void AddRange(IEnumerable<T> entities)
         {
-            dbSet.AddRange(entities);
+            unitOfWork.Context.AddRange(entities);
         }
 
         public async void AddRangeAsync(IEnumerable<T> entities)
         {
-            await dbSet.AddRangeAsync(entities);
+            await unitOfWork.Context.AddRangeAsync(entities);
         }
     }
 }
