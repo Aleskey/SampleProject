@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace SampleProject.Api.Extensions
 {
@@ -9,14 +10,11 @@ namespace SampleProject.Api.Extensions
         {
             applicationBuilder.UseSwagger();
 
-            applicationBuilder.UseSwaggerUI(opt =>
-            {
-                string basePath = Environment.GetEnvironmentVariable("ASPNETCORE_APPL_PATH");
-                opt.SwaggerEndpoint($"{basePath}/swagger/v1/swagger.json", "SampleProject API");
-                opt.RoutePrefix = "";
-            });
+            applicationBuilder.UseSwaggerUI(opt => opt.SwaggerEndpoint("../swagger/v1/swagger.json", "SampleProject API"));
 
-            return applicationBuilder;
+            var options = new RewriteOptions();
+            options.AddRedirect("^$", "swagger");
+            return applicationBuilder.UseRewriter(options);
         }
     }
 }

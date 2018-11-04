@@ -2,3 +2,4 @@
 bin
 obj
 /SampleProject.Api/Properties/PublishProfiles/SampleProjectApi20181004111225 - Web Deploy.pubxml
+/SampleProject.Api/logs

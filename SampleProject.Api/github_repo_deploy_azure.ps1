@@ -21,4 +21,4 @@ az webapp deployment source config -n $appName -g $resourceGroup `
 
 # launch the website in a browser
 $site = az webapp show -n $appName -g $resourceGroup --query "hostNames" -o tsv
-Start-Process https://$site/swaggere
+Start-Process https://$site/swagger

@@ -12,18 +12,8 @@ namespace SampleProject.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
-        {
-            Configuration = configuration;
-            CurrentEnvironment = hostingEnvironment;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        public IHostingEnvironment CurrentEnvironment { get; }
-
-        /// <param name="services">The services.</param>
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(
+            IServiceCollection services)
         {
             services.RegisterServices();
 
@@ -37,13 +27,15 @@ namespace SampleProject.Api
 
         public void Configure(
             IApplicationBuilder app,
+            IConfiguration configuration,
+            IHostingEnvironment hostingEnvironment,
             ILoggerFactory loggerFactory,
             RateDbContext rateDbContext,
             DataProviderFactory dataProviderFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(configuration.GetSection("Logging"));
 
-            if (CurrentEnvironment.IsDevelopment())
+            if (hostingEnvironment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -51,9 +43,7 @@ namespace SampleProject.Api
             rateDbContext.EnsureSeedDataForContext(dataProviderFactory);
 
             app.ConfigureSwagger();
-
             app.UseStatusCodePages();
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

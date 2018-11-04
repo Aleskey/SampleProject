@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SampleProject.Common;
 using SampleProject.Core.Interfaces;
 using SampleProject.DataAccess.Entities;
-using SampleProject.DataAccess.Repositories;
 
 namespace SampleProject.Core
 {

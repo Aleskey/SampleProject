@@ -8,7 +8,7 @@ using SampleProject.Models;
 namespace SampleProject.Api.Controllers
 {
     [Produces("application/json", "application/xml")]
-    [Route("api/rates")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RatesController : ControllerBase
     {

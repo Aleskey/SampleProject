@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SampleProject.Common;
 using SampleProject.Core;

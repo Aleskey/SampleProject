@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using SampleProject.Data;
-using SampleProject.DataAccess.Entities;
+﻿using SampleProject.Data;
 
 namespace SampleProject.Core.Factories.DataProviders
 {
