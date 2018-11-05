@@ -1,6 +1,6 @@
 ﻿namespace SampleProject.Common
 {
-    public class StringConstants
+    public static class StringConstants
     {
         public const string ApiName = "SampleProject API";
     }
