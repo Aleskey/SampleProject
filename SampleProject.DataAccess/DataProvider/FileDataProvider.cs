@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SampleProject.Common.Interfaces;
 using SampleProject.Common.Data;
@@ -15,17 +16,12 @@ namespace SampleProject.DataAccess.DataProvider
             this.filePath = filePath ?? throw new ArgumentNullException(nameof(filePath));
         }
 
-        public JsonData GetRateCollection()
+        public async Task<JsonData> GetJsonData()
         {
-            var content = this.ReadFileContent();
+            var content = await File.ReadAllTextAsync(this.filePath);
             var result = JsonConvert.DeserializeObject<JsonData>(content);
-
+            
             return result;
-        }
-
-        private string  ReadFileContent()
-        {
-            return File.ReadAllText(this.filePath);
         }
     }
 }

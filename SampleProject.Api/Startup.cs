@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SampleProject.Api.Extensions;
+using SampleProject.Api.Initializers;
 using SampleProject.Common.Interfaces;
 
 namespace SampleProject.Api
@@ -38,7 +39,7 @@ namespace SampleProject.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            unitOfWork.EnsureSeedData(dataProviderFactory);
+            ApplicationDbInitializer.Seed(unitOfWork, dataProviderFactory).Wait();
 
             app.ConfigureSwagger();
             app.UseStatusCodePages();

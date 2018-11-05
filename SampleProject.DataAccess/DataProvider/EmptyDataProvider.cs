@@ -1,13 +1,14 @@
-﻿using SampleProject.Common.Interfaces;
+﻿using System.Threading.Tasks;
+using SampleProject.Common.Interfaces;
 using SampleProject.Common.Data;
 
 namespace SampleProject.DataAccess.DataProvider
 {
     public class EmptyDataProvider : IDataProvider
     {
-        public JsonData GetRateCollection()
+        public async Task<JsonData> GetJsonData()
         {
-            return new JsonData();
+            return await Task.FromResult(new JsonData());
         }
     }
 }

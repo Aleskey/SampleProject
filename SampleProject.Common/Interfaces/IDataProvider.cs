@@ -1,9 +1,10 @@
-﻿using SampleProject.Common.Data;
+﻿using System.Threading.Tasks;
+using SampleProject.Common.Data;
 
 namespace SampleProject.Common.Interfaces
 {
     public interface IDataProvider
     {
-        JsonData GetRateCollection();
+        Task<JsonData> GetJsonData();
     }
 }
