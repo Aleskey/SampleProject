@@ -15,10 +15,10 @@ namespace SampleProject.DataAccess.DataProvider
             this.filePath = filePath ?? throw new ArgumentNullException(nameof(filePath));
         }
 
-        public RateCollection GetRateCollection()
+        public JsonData GetRateCollection()
         {
             var content = this.ReadFileContent();
-            var result = JsonConvert.DeserializeObject<RateCollection>(content);
+            var result = JsonConvert.DeserializeObject<JsonData>(content);
 
             return result;
         }

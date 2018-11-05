@@ -4,6 +4,6 @@ namespace SampleProject.Common.Interfaces
 {
     public interface IDataProvider
     {
-        RateCollection GetRateCollection();
+        JsonData GetRateCollection();
     }
 }

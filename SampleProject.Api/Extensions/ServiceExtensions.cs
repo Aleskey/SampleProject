@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SampleProject.Common;
 using SampleProject.Common.Interfaces;
 using SampleProject.Core.Interfaces;
 using SampleProject.Core.Services;
@@ -15,6 +16,14 @@ namespace SampleProject.Api.Extensions
 {
     public static class ServiceExtensions
     {
+        private const string ApiVersion = "v1";
+
+        private const string ApiDescription = "API that retrieves rate for given date range";
+
+        private const string ContactName = "Alexey Karpov";
+
+        private const string ContactEmail = "aleksey.karpov1982@gmail.com";
+
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             services.AddDbContext<IDbContext, RateDbContext>(opt => opt.UseInMemoryDatabase("SampleDatabase"));
@@ -31,16 +40,15 @@ namespace SampleProject.Api.Extensions
         {
             return services.AddSwaggerGen(opt =>
             {
-                opt.SwaggerDoc("v1", new Info
+                opt.SwaggerDoc(ApiVersion, new Info
                 {
-                    Title = "SampleProject API",
-                    Description = "A simple example ASP.NET Core Web API",
-                    TermsOfService = "None",
-                    Version = "v1",
+                    Title = StringConstants.ApiName,
+                    Description = ApiDescription,
+                    Version = ApiVersion,
                     Contact = new Contact
                     {
-                        Name = "Alexey Karpov",
-                        Email = "aleksey.karpov1982@gmail.com"
+                        Name = ContactName,
+                        Email = ContactEmail
                     }
                 });
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using SampleProject.Common.Interfaces;
-using SampleProject.DataAccess.Repositories;
 
 namespace SampleProject.DataAccess
 {
@@ -11,7 +10,7 @@ namespace SampleProject.DataAccess
 
         public UnitOfWork(IDbContext context, IRepositoryFactory repositoryFactory)
         {
-            Context = context ?? throw new ArgumentNullException(nameof(context));
+            this.Context = context ?? throw new ArgumentNullException(nameof(context));
             this.repositoryFactory = repositoryFactory ?? throw new ArgumentNullException(nameof(repositoryFactory));
         }
 

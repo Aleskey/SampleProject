@@ -5,9 +5,9 @@ namespace SampleProject.DataAccess.DataProvider
 {
     public class EmptyDataProvider : IDataProvider
     {
-        public RateCollection GetRateCollection()
+        public JsonData GetRateCollection()
         {
-            return new RateCollection();
+            return new JsonData();
         }
     }
 }

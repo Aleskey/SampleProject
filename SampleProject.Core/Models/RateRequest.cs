@@ -4,6 +4,8 @@ namespace SampleProject.Core.Models
 {
     public class RateRequest
     {
+        private const int MaxHours = 24;
+
         public RateRequest(DateTimeOffset fromDate, DateTimeOffset toDate)
         {
             FromDate = fromDate;
@@ -18,7 +20,8 @@ namespace SampleProject.Core.Models
         {
             get
             {
-                return (ToDate - FromDate).Ticks > 0 && FromDate.Day == ToDate.Day;
+                var difference = ToDate - FromDate;
+                return difference.Ticks > 0 && MaxHours > difference.TotalHours && FromDate.Day == ToDate.Day;
             }
         }
     }
