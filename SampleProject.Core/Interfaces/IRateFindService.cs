@@ -5,8 +5,8 @@ using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.Core.Interfaces
 {
-    public interface IRateService
+    public interface IRateFindService
     {
-        Task<Rate> FindRateAsync(RateRequest rateRequest);
+        Task<Rate> FindRateAsync(RateFindRequest rateRequest);
     }
 }
