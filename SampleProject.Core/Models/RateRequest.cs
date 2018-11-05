@@ -2,9 +2,9 @@
 
 namespace SampleProject.Core.Models
 {
-    public class RateFindRequest
+    public class RateRequest
     {
-        public RateFindRequest(DateTimeOffset fromDate, DateTimeOffset toDate)
+        public RateRequest(DateTimeOffset fromDate, DateTimeOffset toDate)
         {
             FromDate = fromDate;
             ToDate = toDate;

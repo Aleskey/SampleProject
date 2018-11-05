@@ -13,9 +13,9 @@ namespace SampleProject.Api.Controllers
     [ApiController]
     public class RatesController : ControllerBase
     {
-        private IRateFindService rateService;
+        private IRateService rateService;
 
-        public RatesController(IRateFindService rateService)
+        public RatesController(IRateService rateService)
         {
             this.rateService = rateService ?? throw new ArgumentNullException(nameof(rateService));
         }
@@ -41,7 +41,7 @@ namespace SampleProject.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(DateTimeOffset fromDate, DateTimeOffset toDate)
         {
-            var request = new RateFindRequest(fromDate, toDate);
+            var request = new RateRequest(fromDate, toDate);
 
             if (!request.IsValid)
             {

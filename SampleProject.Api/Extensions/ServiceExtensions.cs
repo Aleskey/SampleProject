@@ -21,7 +21,7 @@ namespace SampleProject.Api.Extensions
 
             services.AddTransient<IRepositoryFactory, RepositoryFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IRateFindService, RateFindService>();
+            services.AddTransient<IRateService, RateFindService>();
             services.AddTransient<IDataProviderFactory, DataProviderFactory>();
 
             return services;

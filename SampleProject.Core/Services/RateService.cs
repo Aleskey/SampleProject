@@ -9,7 +9,7 @@ using SampleProject.DataAccess.Entities;
 
 namespace SampleProject.Core.Services
 {
-    public class RateFindService : IRateFindService
+    public class RateFindService : IRateService
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -18,7 +18,7 @@ namespace SampleProject.Core.Services
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public async Task<Rate> FindRateAsync(RateFindRequest rateRequest)
+        public async Task<Rate> FindRateAsync(RateRequest rateRequest)
         {
             var fromZulu = rateRequest.FromDate.ToUniversalTime();
             var toZulu = rateRequest.ToDate.ToUniversalTime();
